@@ -1,4 +1,4 @@
-name: Run Gradle test
+name: Run Gradle check
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - releases/*
 
 jobs:
-  gradle:
+  gradle-check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,6 +16,6 @@ jobs:
         distribution: adopt
         java-version: 8
     - uses: eskatos/gradle-command-action@v2
-      name: gradle test
+      name: gradle check
       with:
-        arguments: test
+        arguments: check
