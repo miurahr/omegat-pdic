@@ -58,7 +58,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.21")
     implementation("commons-io:commons-io:2.5")
     implementation("commons-lang:commons-lang:2.6")
-    implementation("org.slf4j:slf4j-nop:1.7.21")
+    implementation("org.slf4j:slf4j-nop:1.7.32")
 }
 
 checkstyle {
