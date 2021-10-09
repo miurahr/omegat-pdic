@@ -73,6 +73,7 @@ distributions {
         }
     }
 }
-val jar by tasks.getting(Jar::class) {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-}
+
+//val jar by tasks.getting(Jar::class) {
+//    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+//}
