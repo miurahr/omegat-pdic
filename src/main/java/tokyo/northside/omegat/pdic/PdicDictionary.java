@@ -23,6 +23,11 @@ public class PdicDictionary implements IDictionary {
 
     private PdicInfo dicInfo;
 
+    /**
+     * Constructor of dictionary driver.
+     * @param file DIC file.
+     * @throws IOException when got error.
+     */
     public PdicDictionary(final File file) throws IOException {
         String cachePath = file.getPath() + ".idx";
         final int headerSize = 256;

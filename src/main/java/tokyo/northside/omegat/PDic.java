@@ -52,6 +52,9 @@ public class PDic implements IDictionaryFactory {
         return new PdicDictionary(file);
     }
 
+    /**
+     * registration of dictionary factory.
+     */
     static class PDicApplicationEventListener implements IApplicationEventListener {
         @Override
         public void onApplicationStartup() {

@@ -407,6 +407,9 @@ class PdicInfo {
         return null;
     }
 
+    /**
+     * AnalyzeBlock of content container.
+     */
     final class AnalyzeBlock {
         private byte[] mBuff;
         private boolean mLongfield;
