@@ -68,7 +68,7 @@ latest format version using PDIC/Unicode shareware.
 
 - Not working: [French-Japanese dictionary](http://www.vector.co.jp/soft/dl/win95/edu/se217092.html)
 
-which was an old format version 4.00, that is out of the plugin support.
+French dictionary uses an old format version 4.00, that is out of the plugin support.
 It can be used when export and convert to latest format version.
 
 ## Development history
