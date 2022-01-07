@@ -8,7 +8,7 @@ plugins {
     distribution
     id("org.omegat.gradle") version "1.5.3"
     id("com.github.spotbugs") version "5.0.3"
-    id("com.diffplug.spotless") version "6.1.0"
+    id("com.diffplug.spotless") version "6.1.2"
     id("com.palantir.git-version") version "0.12.3" apply false
 }
 
