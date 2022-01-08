@@ -54,11 +54,7 @@ omegat {
 }
 
 dependencies {
-    packIntoJar("com.ibm.icu:icu4j-charset:70.1")
-    implementation("org.slf4j:slf4j-api:1.7.32")
-    implementation("commons-io:commons-io:2.11.0")
-    implementation("commons-lang:commons-lang:2.6")
-    implementation("org.slf4j:slf4j-nop:1.7.32")
+    packIntoJar("io.github.eb4j:pdic4j:0.2.0")
 }
 
 checkstyle {
