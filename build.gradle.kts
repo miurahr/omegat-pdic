@@ -56,7 +56,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    packIntoJar("io.github.eb4j:pdic4j:0.3.0")
+    packIntoJar("io.github.eb4j:pdic4j:0.3.2")
 }
 
 checkstyle {
