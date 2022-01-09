@@ -71,10 +71,10 @@ latest format version using PDIC/Unicode shareware.
 French dictionary uses an old format version 4.00, that is out of the plugin support.
 It can be used when export and convert to latest format version.
 
-## Development history
+## Dependency
 
-Original core code base was developed on [EBViewer dictionary
-lookup application project](https://github.com/eb4j/ebviewer), and shares the code among project.
+- The plugin is tested with OmegaT 5.6.
+- The plugin depends on PDIC4j library.
 
 ## License
 
