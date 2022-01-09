@@ -5,6 +5,7 @@ import org.omegat.core.CoreEvents;
 import org.omegat.core.dictionaries.IDictionary;
 import org.omegat.core.dictionaries.IDictionaryFactory;
 import org.omegat.core.events.IApplicationEventListener;
+import org.omegat.util.Language;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,7 +56,8 @@ public final class PDic implements IDictionaryFactory {
      */
     @Override
     public IDictionary loadDict(final File file) throws IOException {
-        return new PdicDict(file);
+        Language source = Core.getProject().getProjectProperties().getSourceLanguage();
+        return new PdicDict(file, source.getLocale());
     }
 
     /**

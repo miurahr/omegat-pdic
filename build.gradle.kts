@@ -52,9 +52,11 @@ omegat {
     version = "5.6.0"
     pluginClass = "tokyo.northside.omegat.PDic"
 }
-
+repositories {
+    mavenCentral()
+}
 dependencies {
-    packIntoJar("io.github.eb4j:pdic4j:0.2.0")
+    packIntoJar("io.github.eb4j:pdic4j:0.3.0")
 }
 
 checkstyle {

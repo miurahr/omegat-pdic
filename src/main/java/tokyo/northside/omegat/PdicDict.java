@@ -8,8 +8,8 @@ import org.omegat.core.dictionaries.IDictionary;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * PDic access driver class.
@@ -18,16 +18,19 @@ import java.util.List;
 public final class PdicDict implements IDictionary {
 
     private final PdicDictionary dict;
+    private final Locale sourceLocale;
 
     /**
      * Construct with .dic file.
      * It create index cache file with name .dic.idx.
      *
      * @param file PDIC .dic file.
+     * @param locale source language locale
      * @throws IOException when access error occurred.
      */
-    public PdicDict(final File file) throws IOException {
+    public PdicDict(final File file, final Locale locale) throws IOException {
         File cache = new File(file.getPath() + ".idx");
+        sourceLocale = locale;
         this.dict = PdicDictionary.loadDictionary(file, cache);
     }
 
@@ -38,12 +41,8 @@ public final class PdicDict implements IDictionary {
      * @return List of entries. May be empty, but cannot be null.
      */
     @Override
-    public List<DictionaryEntry> readArticles(final String word) {
-        List<PdicElement> results = dict.getEntries(word);
-        if (results == null) {
-            return Collections.emptyList();
-        }
-        return makeDictionaryEntries(results);
+    public List<DictionaryEntry> readArticles(final String word) throws IOException {
+        return makeDictionaryEntries(dict.getEntries(word.toLowerCase(sourceLocale)));
     }
 
     /**
@@ -54,12 +53,8 @@ public final class PdicDict implements IDictionary {
      * @return List of entries. May be empty, but cannot be null.
      */
     @Override
-    public List<DictionaryEntry> readArticlesPredictive(final String word) {
-        List<PdicElement> results = dict.getEntriesPredictive(word);
-        if (results == null) {
-            return Collections.emptyList();
-        }
-        return makeDictionaryEntries(results);
+    public List<DictionaryEntry> readArticlesPredictive(final String word) throws IOException {
+        return makeDictionaryEntries(dict.getEntriesPredictive(word.toLowerCase(sourceLocale)));
     }
 
     /**
@@ -72,17 +67,17 @@ public final class PdicDict implements IDictionary {
     private List<DictionaryEntry> makeDictionaryEntries(final List<PdicElement> results) {
         List<DictionaryEntry> lists = new ArrayList<>();
         for (PdicElement result : results) {
-            String disp = result.getDisp();
+            String disp = result.getHeadWord();
             if (disp.equals("")) {
-                disp = result.getIndex();
+                disp = result.getIndexWord();
             }
             StringBuilder sb = new StringBuilder();
-            String phone = result.getPhone();
+            String phone = result.getPronunciation();
             if (phone != null) {
                 sb.append(phone).append(" / ");
             }
-            sb.append(result.getTrans()).append("<br/>");
-            String sample = result.getSample();
+            sb.append(result.getTranslation()).append("<br/>");
+            String sample = result.getExample();
             if (sample != null) {
                 sb.append(sample);
             }
