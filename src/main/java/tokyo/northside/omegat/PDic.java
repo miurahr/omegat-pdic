@@ -5,7 +5,7 @@ import org.omegat.core.CoreEvents;
 import org.omegat.core.dictionaries.IDictionary;
 import org.omegat.core.dictionaries.IDictionaryFactory;
 import org.omegat.core.events.IApplicationEventListener;
-import tokyo.northside.omegat.pdic.PdicDictionary;
+import org.omegat.util.Language;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,19 +13,26 @@ import java.io.IOException;
 /**
  * @author Hiroshi Miura
  */
-public class PDic implements IDictionaryFactory {
+public final class PDic implements IDictionaryFactory {
+
+    private static IApplicationEventListener listener;
+
+    private PDic() {
+    }
 
     /**
      * Plugin loader.
      */
     public static void loadPlugins() {
-        CoreEvents.registerApplicationEventListener(new PDicApplicationEventListener());
+        listener = new PDicApplicationEventListener();
+        CoreEvents.registerApplicationEventListener(listener);
     }
 
     /**
      * Plugin unloader.
      */
     public static void unloadPlugins() {
+        CoreEvents.unregisterApplicationEventListener(listener);
     }
 
     /**
@@ -49,20 +56,27 @@ public class PDic implements IDictionaryFactory {
      */
     @Override
     public IDictionary loadDict(final File file) throws IOException {
-        return new PdicDictionary(file);
+        Language source = Core.getProject().getProjectProperties().getSourceLanguage();
+        return new PdicDict(file, source.getLocale());
     }
 
     /**
      * registration of dictionary factory.
      */
     static class PDicApplicationEventListener implements IApplicationEventListener {
+
+        private IDictionaryFactory factory;
+
         @Override
         public void onApplicationStartup() {
-            Core.getDictionaries().addDictionaryFactory(new PDic());
+            factory = new PDic();
+            Core.getDictionaries().addDictionaryFactory(factory);
         }
 
         @Override
         public void onApplicationShutdown() {
+            Core.getDictionaries().removeDictionaryFactory(factory);
         }
     }
+
 }
