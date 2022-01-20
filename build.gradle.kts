@@ -9,7 +9,7 @@ plugins {
     id("org.omegat.gradle") version "1.5.7"
     id("com.github.spotbugs") version "5.0.4"
     id("com.diffplug.spotless") version "6.2.0"
-    id("com.palantir.git-version") version "0.12.3" apply false
+    id("com.palantir.git-version") version "0.13.0" apply false
 }
 
 fun getProps(f: File): Properties {
