@@ -7,7 +7,7 @@ plugins {
     checkstyle
     distribution
     id("org.omegat.gradle") version "1.5.7"
-    id("com.github.spotbugs") version "5.0.7"
+    id("com.github.spotbugs") version "5.0.8"
     id("com.diffplug.spotless") version "6.7.2"
     id("com.palantir.git-version") version "0.13.0" apply false
 }
